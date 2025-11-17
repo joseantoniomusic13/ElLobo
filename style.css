@@ -1,0 +1,200 @@
+/* --------------------- GENERAL --------------------- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1b1b1b, #2b0a0a);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 95%;
+    max-width: 500px;
+    text-align: center;
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1 {
+    color: #ff4d4d;
+}
+
+h2 {
+    color: #f77f00;
+}
+
+h3 {
+    color: #fff;
+}
+
+/* --------------------- INPUTS Y BOTONES --------------------- */
+input, select {
+    width: 85%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+button {
+    background: #e63946;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #f77f00;
+    transform: scale(1.08);
+}
+
+/* --------------------- ROLES --------------------- */
+#rolesList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.role-box {
+    background: #2b2b2b;
+    color: #fff;
+    border: 2px solid #ff4d4d;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    min-width: 140px;
+}
+
+.role-box:hover {
+    background: #ff4d4d;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* --------------------- ROL INFO --------------------- */
+.rol-info {
+    background: #2b2b2b;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: none;
+}
+
+#nombreRol {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff4d4d;
+}
+
+#descripcionRol {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+/* --------------------- LISTAS --------------------- */
+#listaJugadoresNarrador li {
+    background: #2b2b2b;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#listaJugadoresNarrador li:hover {
+    background: #e63946;
+}
+
+#listaJugadoresNarrador li.muerto {
+    text-decoration: line-through;
+    color: #888;
+    background: #1a1a1a;
+}
+
+/* --------------------- MODALES --------------------- */
+.modal, .modalVidente {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .modalVidente-content {
+    background-color: #1b1b1b;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+}
+
+.cerrar {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cerrar:hover {
+    color: #f77f00;
+}
+
+/* --------------------- CHAT --------------------- */
+.chat-box {
+    height: 200px;
+    overflow-y: auto;
+    background: #2b2b2b;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#chatInput {
+    width: 75%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-right: 10px;
+}
+
+/* --------------------- ANIMACIONES --------------------- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
