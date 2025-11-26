@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Los Hombres Lobo de Castronegro</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    </head>
+
+<body>
+    <div class="container">
+
+        <!-- Pantalla de inicio -->
+        <div id="inicio" class="screen active">
+            <div class="top-buttons">
+                <button id="verReglasBtn">Reglas</button>
+                <button id="verExplicacionRolesBtn">EXPLICACION ROLES</button>
+            </div>
+            <img src="icon.png" alt="Inicio" class="inicio-img">
+            <h1>Los Hombres Lobo de Castronegro</h1>
+            <h3>by Jose Antonio</h3>
+            <label for="numJugadoresSelect">Número de jugadores:</label>
+            <select id="numJugadoresSelect">
+                <option value="3">3 jugadores</option>
+                <option value="4">4 jugadores</option>
+                <option value="5">5 jugadores</option>
+                <option value="6" selected>6 jugadores</option>
+                <option value="7">7 jugadores</option>
+                <option value="8">8 jugadores</option>
+                <option value="9">9 jugadores</option>
+                <option value="10">10 jugadores</option>
+                <option value="11">11 jugadores</option>
+                <option value="12">12 jugadores</option>
+                <option value="13">13 jugadores</option>
+                <option value="14">14 jugadores</option>
+                <option value="15">15 jugadores</option>
+                <option value="16">16 jugadores</option>
+                <option value="17">17 jugadores</option>
+                <option value="18">18 jugadores</option>
+                <option value="19">19 jugadores</option>
+                <option value="20">20 jugadores</option>
+            </select>
+            <button id="siguienteNumJugadores">Siguiente</button>
+        </div>
+        <!-- Pantalla Selección de Roles -->
+        <div id="roles" class="screen">
+            <h2>Selección de Roles</h2>
+            <div class="roles-summary">
+                <p>Seleccionados: <span id="totalRolesCount">0</span> / <span id="targetRolesCount">0</span></p>
+            </div>
+            <div class="role-category">
+                <h3 class="category-title">Hombres Lobo <i class="fa-solid fa-chevron-down"></i></h3>
+                <div id="cat-lobos" class="category-content open">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+            <div class="role-category">
+                <h3 class="category-title">Aldeanos y Básicos <i class="fa-solid fa-chevron-down"></i></h3>
+                <div id="cat-aldeanos" class="category-content open">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <div class="role-category">
+                <h3 class="category-title">Ambiguos y solitarios <i class="fa-solid fa-chevron-down"></i></h3>
+                <div id="cat-ambiguos" class="category-content">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button id="volverInicio" class="secondary">Volver</button>
+                <button id="siguienteRoles">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- Pantalla Nombres -->
+        <div id="nombres" class="screen">
+            <h2>Nombres de los Jugadores</h2>
+            <div id="nombresList"></div>
+            <div class="buttons-row">
+                <button id="volverRoles" class="secondary">Volver</button>
+                <button id="siguienteNombres">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- Ver roles por turnos -->
+        <div id="turnos" class="screen">
+            <h2 id="turnoJugador"></h2>
+            <button id="verRolBtn">Ver mi rol</button>
+            <div id="rolJugador" class="rol-info">
+                <h2 id="nombreRol"></h2>
+                <p id="descripcionRol"></p>
+            </div>
+            <button id="siguienteJugador" style="display:none;">Siguiente jugador</button>
+            <button id="menuNarradorBtn">Menú del Narrador</button>
+        </div>
+
+        <!-- Menú del narrador -->
+        <div id="narrador" class="screen">
+            <h2>Menú del Narrador</h2>
+            <p>Día: <span id="contadorDias">1</span></p>
+
+            <div class="narrador-menu-grid">
+                <button id="comenzarJuego" class="menu-btn"><i class="fa-solid fa-sun"></i> Avanzar día</button>
+                <button id="abrirVidenteBtn" class="menu-btn"><i class="fa-solid fa-eye"></i> Modo Vidente</button>
+                <button id="abrirMuerteBtn" class="menu-btn"><i class="fa-solid fa-skull"></i> Registrar Muerte</button>
+                <button id="abrirCupidoBtn" class="menu-btn"><i class="fa-solid fa-heart"></i> Modo Cupido</button>
+                <button id="abrirHistorialBtn" class="menu-btn"><i class="fa-solid fa-scroll"></i> Historial</button>
+                <button id="abrirChatNarradorBtn" class="menu-btn"><i class="fa-solid fa-comments"></i> Chat</button>
+                <button id="verReglasNarradorBtn" class="menu-btn"><i class="fa-solid fa-book"></i> Reglas</button>
+                <button id="reiniciarPartidaBtn" class="menu-btn danger"><i class="fa-solid fa-rotate-right"></i>
+                    Reiniciar</button>
+            </div>
+
+            <!-- Lista de jugadores -->
+            <h3>Estado Jugadores</h3>
+            <ul id="listaJugadoresNarrador"></ul>
+
+            <button id="volverTurnos">Volver</button>
+        </div>
+
+        <!-- Modal Vidente -->
+        <div id="modalVidente" class="modalVidente">
+            <div class="modalVidente-content">
+                <h3>Modo Vidente</h3>
+                <label for="seleccionarJugadorVidente">Selecciona un jugador:</label>
+                <select id="seleccionarJugadorVidente"></select>
+                <button id="verRolVidenteBtn">Ver rol</button>
+                <h2 id="nombreRolVidente"></h2>
+                <p id="descripcionRolVidente"></p>
+                <button id="cerrarVidenteBtn">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- Modal Registrar Muerte -->
+        <div id="modalMuerte" class="modal">
+            <div class="modal-content">
+                <span id="cerrarMuerteBtn" class="cerrar">&times;</span>
+                <h3>Registrar Muerte</h3>
+                <label for="asesinoSelect">Quién mató:</label>
+                <select id="asesinoSelect"></select>
+                <label for="victimaSelect">A quién mató:</label>
+                <select id="victimaSelect"></select>
+                <button id="registrarMuerteBtn">Confirmar Muerte</button>
+            </div>
+        </div>
+
+        <!-- Modal Historial -->
+        <div id="modalHistorial" class="modal">
+            <div class="modal-content">
+                <span id="cerrarHistorialBtn" class="cerrar">&times;</span>
+                <h3>Historial de la Partida</h3>
+                <div id="historial" class="scroll-box"></div>
+                <h3>Resumen Final</h3>
+                <div id="resumenFinal" class="scroll-box"></div>
+            </div>
+        </div>
+    <!-- Modal Cupido -->
+        <div id="modalCupido" class="modal">
+            <div class="modal-content">
+                <span id="cerrarCupidoBtn" class="cerrar">&times;</span>
+
+                <h2>✨ Modo Cupido ✨</h2>
+                <p>Selecciona dos jugadores para enamorarlos:</p>
+
+                <label for="cupidoSelect1">Jugador 1:</label>
+                <select id="cupidoSelect1"></select>
+
+                <label for="cupidoSelect2">Jugador 2:</label>
+                <select id="cupidoSelect2"></select>
+
+                <button id="confirmarCupidoBtn" class="menu-btn">
+                    ❤️ Enamorar ❤️
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Chat Narrador -->
+        <div id="modalChatNarrador" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span id="cerrarChatBtn" class="cerrar">&times;</span>
+                <h3>Mini Chat del Narrador</h3>
+                <div id="chatMensajes" class="chat-box"></div>
+                <input type="text" id="chatInput" placeholder="Escribe un mensaje...">
+                <button id="enviarChatBtn">Enviar</button>
+            </div>
+        </div>
+
+        <!-- Modal Reiniciar Partida -->
+        <div id="modalReiniciar" class="modal">
+            <div class="modal-content">
+                <span id="cerrarReiniciarBtn" class="cerrar">&times;</span>
+                <h2>¿Qué deseas hacer?</h2>
+                <p>Puedes volver a jugar con los mismos jugadores y roles (se repartirán de nuevo) o empezar una partida
+                    totalmente nueva.</p>
+                <button id="reiniciarRapidoBtn">Volver a jugar (Mismos jugadores)</button>
+                <button id="reiniciarCompletoBtn" class="secondary">Empezar de cero</button>
+            </div>
+        </div>
+
+        <!-- Modal Notas Jugador -->
+        <div id="modalNotas" class="modal">
+            <div class="modal-content">
+                <span id="cerrarNotasBtn" class="cerrar">&times;</span>
+                <h3 id="tituloNotas">Notas de Jugador</h3>
+                <textarea id="textoNotas" rows="10"
+                    placeholder="Escribe aquí tus notas sobre este jugador..."></textarea>
+                <button id="guardarNotasBtn">Guardar Nota</button>
+            </div>
+        </div>
+
+        <!-- Modal Confirmación Narrador -->
+        <div id="modalConfirmarNarrador" class="modal">
+            <div class="modal-content">
+                <h2>⚠ Zona Restringida</h2>
+                <p>Esta sección es solo para el Narrador. ¿Eres el Narrador?</p>
+                <button id="confirmarNarradorBtn">Sí, soy el Narrador</button>
+                <button id="cancelarNarradorBtn" class="secondary">No, soy un ciudadano</button>
+            </div>
+        </div>
+
+        <!-- Animación Dado/Reparto -->
+        <div id="animacionDado" class="overlay-animacion">
+            <div class="dado-container">
+                <div class="dado">
+                    <div class="cara front"><i class="fa-solid fa-wolf-pack-battalion"></i></div>
+                    <div class="cara back"><i class="fa-solid fa-user-secret"></i></div>
+                    <div class="cara right"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="cara left"><i class="fa-solid fa-eye"></i></div>
+                    <div class="cara top"><i class="fa-solid fa-skull"></i></div>
+                    <div class="cara bottom"><i class="fa-solid fa-flask"></i></div>
+                </div>
+                <h2 class="texto-animacion">Repartiendo roles...</h2>
+            </div>
+        </div>
+
+        <!-- Modal QR Roles -->
+        <div id="modalQR" class="modal">
+            <div class="modal-content" style="text-align: center;">
+                <span id="cerrarQRBtn" class="cerrar">&times;</span>
+                <h3>Escanea para ver los Roles</h3>
+                <div id="qrcode" style="display: flex; justify-content: center; margin: 20px auto;"></div>
+                <p>Escanea este código con tu móvil para ver la explicación de cada rol.</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
